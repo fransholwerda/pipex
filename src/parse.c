@@ -6,26 +6,34 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/25 15:53:21 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/10/27 18:04:13 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/10/28 17:59:35 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <struct_tools.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <get_paths.h>
-#include <utils.h>
+#include "get_paths.h"
+#include "struct_tools.h"
+#include "utils.h"
 
+
+
+#include <stdio.h>
 static char	*check_cmd_path(char **paths, char *cmd)
 {
 	int		i;
+	char	*tmp;
 	char	*cmd_path;
 
 	i = 0;
+	tmp = NULL;
+	cmd_path = NULL;
 	while (paths[i])
 	{
-		cmd_path = ft_strjoin(paths[i], cmd);
-		if (access(cmd_path, F_OK))
+		tmp = ft_strjoin("/", cmd);
+		cmd_path = ft_strjoin(paths[i], tmp);
+		free(tmp);
+		if (access(cmd_path, F_OK) == 0)
 			return (cmd_path);
 		free(cmd_path);
 		i++;
@@ -40,10 +48,15 @@ static t_command	*parse_cmd(char **paths, char *arg)
 	char		*cmd_path;
 	t_command	*cmd;
 
+	printf("test1\n");
 	args = ft_split(arg, ' ');
+	printf("test2\n");
 	cmd_str = ft_strdup(args[0]);
+	printf("test3\n");
 	cmd_path = check_cmd_path(paths, cmd_str);
+	printf("test4\n");
 	cmd = new_cmd(cmd_path, cmd_str, args);
+	printf("test5\n");
 	return (cmd);
 }
 
@@ -55,17 +68,15 @@ t_command	*parse(int argc, char *argv[], char *env[])
 
 	cmd = NULL;
 	paths = get_paths(env);
-	i = 1;
+	i = 2;
 	while (i < argc - 1)
 	{
 		if (!cmd)
 			cmd = parse_cmd(paths, argv[i]);
 		else
-			cmd_add_back(cmd, parse_cmd);
+			cmd_add_back(cmd, parse_cmd(paths, argv[i]));
+		i++;
 	}
-	//REMOVE THIS
-	while (cmd)
-	{
-		
-	}
+	free_split(paths);
+	return (cmd);
 }

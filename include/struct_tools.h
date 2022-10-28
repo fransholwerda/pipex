@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/25 15:59:38 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/10/27 13:55:17 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/10/28 13:46:57 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_command
 	struct s_command	*next;
 }				t_command;
 
-t_command	*new_cmd(char *path, char *cmd, char **arg);
+t_command	*new_cmd(char *path, char *cmd, char **args);
 void		cmd_add_back(t_command *cmd, t_command *new_cmd);
 void		free_cmds(t_command *cmd);
 

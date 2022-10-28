@@ -6,21 +6,23 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/13 14:51:58 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/10/24 18:04:00 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/10/28 17:57:59 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <errno.h>
 #include <stdlib.h>
-#include <stop.h>
-#include <pipex.h>
+#include <unistd.h>
+#include "stop.h"
+#include "pipex.h"
+#include "parse.h"
 
 
 #include <stdio.h> //REMOVE
-// void	check_for_leaks(void)
-// {
-// 	system("leaks pipex");
-// }
+void	check_for_leaks(void)
+{
+	system("leaks pipex");
+}
 
 int	main(int argc, char *argv[], char *env[])
 {

@@ -6,14 +6,13 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/01 19:49:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/10/27 13:07:56 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/10/28 14:23:34 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
-#include <ft_strlen.h>
-#include <stop.h>
+#include "utils.h"
 
 void	free_split(char **result)
 {
