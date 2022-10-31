@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/01 16:26:34 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/10/28 14:23:44 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/10/31 11:12:15 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	unsigned int	j;
 
 	if (s1 == NULL || s2 == NULL)
-		stop("Empty strings provided.\n");
+		return (NULL);
 	s12 = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (s12 == NULL)
 		stop("Memory allocation error\n");

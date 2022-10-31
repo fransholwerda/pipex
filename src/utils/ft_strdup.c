@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/02 14:12:17 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/10/28 18:03:18 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/10/31 17:34:55 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ char	*ft_strdup(const char *s)
 	sdup = NULL;
 	if (s)
 	{
-		printf("test6\n");
 		sdup = malloc((ft_strlen(s) + 1) * sizeof(char));
-		printf("test7\n");
 		if (sdup == NULL)
 			stop("Memory allocation error.\n");
 		i = 0;

@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/25 15:53:21 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/10/28 17:59:35 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/10/31 17:30:47 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,10 @@ static t_command	*parse_cmd(char **paths, char *arg)
 	char		*cmd_path;
 	t_command	*cmd;
 
-	printf("test1\n");
 	args = ft_split(arg, ' ');
-	printf("test2\n");
 	cmd_str = ft_strdup(args[0]);
-	printf("test3\n");
 	cmd_path = check_cmd_path(paths, cmd_str);
-	printf("test4\n");
 	cmd = new_cmd(cmd_path, cmd_str, args);
-	printf("test5\n");
 	return (cmd);
 }
 
