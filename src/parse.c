@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/25 15:53:21 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/10/31 17:30:47 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/11/03 16:28:31 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "utils.h"
 
 
-
+#include <errno.h>
 #include <stdio.h>
 static char	*check_cmd_path(char **paths, char *cmd)
 {
