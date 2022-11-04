@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 17:32:19 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/10/28 17:18:03 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/11/04 11:48:17 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ char	**get_paths(char *env[])
 		i++;
 	}
 	paths = ft_split(&env[i][5], ':');
+	if (!paths)
+		stop("Split");
 	return (paths);
 }

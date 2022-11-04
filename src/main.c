@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/13 14:51:58 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/11/03 17:41:17 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/11/04 11:44:20 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 #include <stdio.h> //REMOVE
 void	check_for_leaks(void)
 {
-	system("leaks pipex");
+	system("leaks -q pipex");
+	system("lsof -c pipex");
 }
 
 int	main(int argc, char *argv[], char *env[])

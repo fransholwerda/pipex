@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/25 15:59:18 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/10/28 17:20:14 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/11/04 11:47:35 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_command	*new_cmd(char *path, char *cmd, char **args)
 
 	new_command = (t_command *)malloc(sizeof(t_command));
 	if (!new_command)
-		stop("Memory allocation error.\n");
+		stop("Malloc");
 	new_command->path = path;
 	new_command->cmd = cmd;
 	new_command->args = args;
