@@ -6,72 +6,71 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/25 15:53:21 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/11/03 16:28:31 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/11/04 17:50:39 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <unistd.h>
-#include "get_paths.h"
 #include "struct_tools.h"
 #include "utils.h"
 
-
-#include <errno.h>
-#include <stdio.h>
-static char	*check_cmd_path(char **paths, char *cmd)
+static int	check_for_nonspaces(char *str)
 {
-	int		i;
-	char	*tmp;
-	char	*cmd_path;
+	int	i;
 
 	i = 0;
-	tmp = NULL;
-	cmd_path = NULL;
-	while (paths[i])
+	while (str[i])
 	{
-		tmp = ft_strjoin("/", cmd);
-		cmd_path = ft_strjoin(paths[i], tmp);
-		free(tmp);
-		if (access(cmd_path, F_OK) == 0)
-			return (cmd_path);
-		free(cmd_path);
+		if (str[i] != ' ')
+			return (1);
 		i++;
 	}
-	return (NULL);
+	return (0);
 }
 
-static t_command	*parse_cmd(char **paths, char *arg)
+static t_command	*parse_cmd(char *arg)
 {
 	char		**args;
 	char		*cmd_str;
-	char		*cmd_path;
 	t_command	*cmd;
 
-	args = ft_split(arg, ' ');
-	cmd_str = ft_strdup(args[0]);
-	cmd_path = check_cmd_path(paths, cmd_str);
-	cmd = new_cmd(cmd_path, cmd_str, args);
+	if (arg[0] == '\0')
+	{
+		args = malloc(sizeof(char *) * 2);
+		if (!args)
+			stop(NULL);
+		args[0] = ft_strdup("\0");
+		args[1] = NULL;
+		cmd_str = ft_strdup("\0");
+	}
+	else if (check_for_nonspaces(arg) == 1)
+	{
+		args = ft_split(arg, ' ');
+		cmd_str = ft_strdup(args[0]);
+	}
+	else
+	{
+		args = ft_split(arg, '\0');
+		cmd_str = ft_strdup(arg);
+	}
+	cmd = new_cmd(NULL, cmd_str, args);
 	return (cmd);
 }
 
 t_command	*parse(int argc, char *argv[], char *env[])
 {
 	t_command	*cmd;
-	char		**paths;
 	int			i;
 
 	cmd = NULL;
-	paths = get_paths(env);
 	i = 2;
 	while (i < argc - 1)
 	{
 		if (!cmd)
-			cmd = parse_cmd(paths, argv[i]);
+			cmd = parse_cmd(argv[i]);
 		else
-			cmd_add_back(cmd, parse_cmd(paths, argv[i]));
+			cmd_add_back(cmd, parse_cmd(argv[i]));
 		i++;
 	}
-	free_split(paths);
 	return (cmd);
 }

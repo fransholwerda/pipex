@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 17:06:54 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/11/03 14:44:16 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/11/04 14:13:30 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 
 typedef struct s_pipex
 {
-	int			inf_fd;
-	int			out_fd;
 	t_command	*cmds;
 }				t_pipex;
 

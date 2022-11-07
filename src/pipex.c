@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 15:30:09 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/11/04 11:48:52 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/11/04 17:41:10 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,42 +20,39 @@
 #include "child_process.h"
 #include "pipex.h"
 
-static void	pipex_init(int argc, char *argv[], char *env[], t_pipex *pip)
+static t_command	*cmds_init(int argc, char *argv[], char *env[])
 {
-	pip->inf_fd = open(argv[1], O_RDONLY);
-	if (pip->inf_fd < 0)
-		stop("Infile");
-	pip->out_fd = open(argv[argc - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (pip->out_fd < 0)
-		stop("Outfile");
-	pip->cmds = parse(argc, argv, env);
+	t_command	*cmds;
+
+	cmds = parse(argc, argv, env);
+	cmds->file = ft_strdup(argv[1]);
+	cmds->next->file = ft_strdup(argv[argc - 1]);
+	return (cmds);
 }
 
 void	pipex(int argc, char *argv[], char *env[])
 {
-	t_pipex		pip;
+	t_command	*cmds;
 	int			tunnel[2];
 	pid_t		pid1;
 	pid_t		pid2;
 
-	pipex_init(argc, argv, env, &pip);
+	cmds = cmds_init(argc, argv, env);
 	if (pipe(tunnel) < 0)
-		stop("Pipe");
+		stop(NULL);
 	pid1 = fork();
 	if (pid1 < 0)
-		stop("Fork");
+		stop(NULL);
 	else if (pid1 == 0)
-		child_process1(env, tunnel, pip.inf_fd, pip.cmds);
+		child_process1(env, tunnel, cmds);
 	pid2 = fork();
 	if (pid2 < 0)
-		stop("Fork");
+		stop(NULL);
 	else if (pid2 == 0)
-		child_process2(env, tunnel, pip.out_fd, pip.cmds->next);
+		child_process2(env, tunnel, cmds->next);
 	close(tunnel[0]);
 	close(tunnel[1]);
 	waitpid(pid1, NULL, 0);
 	waitpid(pid2, NULL, 0);
-	close(pip.inf_fd);
-	close(pip.out_fd);
-	free_cmds(pip.cmds);
+	free_cmds(cmds);
 }

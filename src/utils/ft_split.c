@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/01 19:49:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/11/04 11:51:00 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/11/04 17:42:52 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	*add_word(char const *s, char c, size_t i)
 		count++;
 	word = malloc((count + 1) * sizeof(char));
 	if (!word)
-		stop("Malloc");
+		stop(NULL);
 	j = 0;
 	while (j < count)
 	{
@@ -106,7 +106,7 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	result = (char **)malloc((word_count(s, c) + 1) * sizeof(char *));
 	if (!result)
-		stop("Malloc");
+		stop(NULL);
 	result = fill_result(result, s, c);
 	if (!result)
 		return (NULL);

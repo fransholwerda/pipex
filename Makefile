@@ -6,7 +6,7 @@
 #    By: fholwerd <fholwerd@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/07/13 14:52:01 by fholwerd      #+#    #+#                  #
-#    Updated: 2022/11/03 15:33:54 by fholwerd      ########   odam.nl          #
+#    Updated: 2022/11/04 13:59:25 by fholwerd      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME	= pipex
 SRC		= $(ROOT)src/main.c \
 			$(ROOT)src/pipex.c \
 			$(ROOT)src/parse.c \
-			$(ROOT)src/get_paths.c \
+			$(ROOT)src/check_cmd_path.c \
 			$(ROOT)src/child_process.c \
 			$(ROOT)src/struct_tools.c \
 			$(ROOT)src/utils/ft_strdup.c \

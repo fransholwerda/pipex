@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/25 15:59:18 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/11/04 11:47:35 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/11/04 17:42:46 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,17 @@
 #include "struct_tools.h"
 #include "utils.h"
 
-
-
-#include <stdio.h>
 t_command	*new_cmd(char *path, char *cmd, char **args)
 {
 	t_command	*new_command;
 
 	new_command = (t_command *)malloc(sizeof(t_command));
 	if (!new_command)
-		stop("Malloc");
-	new_command->path = path;
+		stop(NULL);
+	new_command->path = NULL;
 	new_command->cmd = cmd;
 	new_command->args = args;
+	new_command->file = NULL;
 	new_command->next = NULL;
 	return (new_command);
 }
@@ -51,6 +49,8 @@ static void	free_cmd_content(t_command *cmd)
 		free(cmd->cmd);
 	if (cmd->path)
 		free(cmd->path);
+	if (cmd->file)
+		free(cmd->file);
 }
 
 void	free_cmds(t_command *cmd)

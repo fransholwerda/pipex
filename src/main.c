@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/13 14:51:58 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/11/04 11:44:20 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/11/07 15:30:58 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,15 @@
 #include "pipex.h"
 #include "parse.h"
 
-
-#include <stdio.h> //REMOVE
-void	check_for_leaks(void)
-{
-	system("leaks -q pipex");
-	system("lsof -c pipex");
-}
-
 int	main(int argc, char *argv[], char *env[])
 {
-	//atexit(check_for_leaks);
 	errno = 0;
 	if (argc != 5)
-		stop("You need to give 4 or more arguments: file1 cmd1 cmd2 file2\n");
+	{
+		write(2, "You need to give 4 or more arguments: \
+file1 cmd1 cmd2 file2\n", 60);
+		exit(EXIT_FAILURE);
+	}
 	pipex(argc, argv, env);
 	return (EXIT_SUCCESS);
 }
