@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/25 15:53:21 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/11/04 17:50:39 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/11/08 13:12:05 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ static t_command	*parse_cmd(char *arg)
 		args = ft_split(arg, '\0');
 		cmd_str = ft_strdup(arg);
 	}
-	cmd = new_cmd(NULL, cmd_str, args);
+	cmd = new_cmd(cmd_str, args);
 	return (cmd);
 }
 
-t_command	*parse(int argc, char *argv[], char *env[])
+t_command	*parse(int argc, char *argv[])
 {
 	t_command	*cmd;
 	int			i;

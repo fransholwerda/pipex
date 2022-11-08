@@ -6,7 +6,7 @@
 #    By: fholwerd <fholwerd@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/07/13 14:52:01 by fholwerd      #+#    #+#                  #
-#    Updated: 2022/11/04 13:59:25 by fholwerd      ########   odam.nl          #
+#    Updated: 2022/11/08 13:16:03 by fholwerd      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC		= $(ROOT)src/main.c \
 OBJ		= $(SRC:.c=.o)
 INCLUDE	= -I$(ROOT)include \
 			-I$(ROOT)include/utils
-CFLAGS	= #-Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/25 15:59:18 by fholwerd      #+#    #+#                 */
-/*   Updated: 2022/11/04 17:42:46 by fholwerd      ########   odam.nl         */
+/*   Updated: 2022/11/08 13:11:39 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "struct_tools.h"
 #include "utils.h"
 
-t_command	*new_cmd(char *path, char *cmd, char **args)
+t_command	*new_cmd(char *cmd, char **args)
 {
 	t_command	*new_command;
 
@@ -41,8 +41,6 @@ void	cmd_add_back(t_command *cmd, t_command *new_cmd)
 
 static void	free_cmd_content(t_command *cmd)
 {
-	int	i;
-
 	if (cmd->args)
 		free_split(cmd->args);
 	if (cmd->cmd)
