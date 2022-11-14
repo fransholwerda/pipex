@@ -6,7 +6,7 @@
 #    By: fholwerd <fholwerd@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/07/13 14:52:01 by fholwerd      #+#    #+#                  #
-#    Updated: 2022/11/08 13:16:03 by fholwerd      ########   odam.nl          #
+#    Updated: 2022/11/14 13:09:01 by fholwerd      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,4 +46,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all libs clean fclean re
+.PHONY: all clean fclean re
